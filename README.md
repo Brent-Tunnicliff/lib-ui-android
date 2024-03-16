@@ -1,9 +1,8 @@
-# template-lib-android
+# lib-ui-android
 
-Template as a base for all my Android libraries.
+Common UI components for my apps.
+
 Project contains the library `lib/` and a demo app `app/`.
-
-After generating the repository find all cases of `replace_me` and rename them.
 
 ## Disclaimer
 

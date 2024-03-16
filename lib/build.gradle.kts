@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.tunnicliff.replace_me"
+    namespace = "dev.tunnicliff.ui"
     compileSdk = 34
 
     defaultConfig {
@@ -33,13 +33,21 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
 }
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "dev.tunnicliff"
-            artifactId = "replace_me"
+            artifactId = "ui"
             version = "0.0.0"
 
             afterEvaluate {
@@ -50,6 +58,12 @@ publishing {
 }
 
 dependencies {
+    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
