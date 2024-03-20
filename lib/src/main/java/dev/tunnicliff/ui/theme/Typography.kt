@@ -3,7 +3,7 @@ package dev.tunnicliff.ui.theme
 import androidx.compose.material3.Typography
 
 // Set of Material typography styles to start with
-val Typography = Typography(
+internal val Typography = Typography(
     /* Other default text styles to override
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
