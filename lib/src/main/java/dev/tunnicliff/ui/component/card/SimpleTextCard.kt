@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.tunnicliff.ui.component.card.internal.BaseCard
+import dev.tunnicliff.ui.component.card.internal.CardPreviewer
 
 @Composable
 fun SimpleTextCard(
@@ -40,7 +42,7 @@ private fun SimpleTextCardPreview() {
             enabled = it.enabled,
             onClick = it.onClick,
             modifier = it.modifier,
-            text = "Hello World!",
+            text = "This is a very long piece of text to see how it is handled.",
             variant = it.variant
         )
     }

@@ -1,11 +1,12 @@
 package dev.tunnicliff.ui.theme
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -15,25 +16,36 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ThemedPreviewer(content: @Composable ColumnScope.() -> Unit) {
+fun ThemedPreviewer(content: @Composable () -> Unit) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
-        AppTheme(useDarkTheme = false) {
-            Surface(
-                color = MaterialTheme.colorScheme.inverseSurface,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                content()
-            }
-        }
+        ContentSection(theme = Theme.LIGHT, content = content)
+        HorizontalDivider()
+        ContentSection(theme = Theme.DARK, content = content)
+    }
+}
 
-        AppTheme(useDarkTheme = true) {
+private enum class Theme {
+    DARK,
+    LIGHT
+}
+
+private fun Theme.isDark(): Boolean = this == Theme.DARK
+
+@Composable
+private fun ContentSection(theme: Theme, content: @Composable () -> Unit) {
+    Box {
+        Text(text = "$theme theme")
+
+        AppTheme(useDarkTheme = theme.isDark()) {
             Surface(
                 color = MaterialTheme.colorScheme.inverseSurface,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                content()
+                Box(modifier = Modifier.padding(4.dp)) {
+                    content()
+                }
             }
         }
     }

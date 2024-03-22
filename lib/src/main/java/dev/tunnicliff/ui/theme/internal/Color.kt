@@ -1,4 +1,4 @@
-package dev.tunnicliff.ui.theme
+package dev.tunnicliff.ui.theme.internal
 
 import androidx.compose.ui.graphics.Color
 
@@ -65,5 +65,3 @@ internal val md_theme_dark_outlineVariant = Color(0xFF41484D)
 internal val md_theme_dark_scrim = Color(0xFF000000)
 
 internal val seed = Color(0xFF133445)
-
-internal const val DisabledAlpha = 0.34f

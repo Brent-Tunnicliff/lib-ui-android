@@ -1,4 +1,4 @@
-package dev.tunnicliff.ui.theme
+package dev.tunnicliff.ui.theme.internal
 
 import androidx.compose.material3.Typography
 

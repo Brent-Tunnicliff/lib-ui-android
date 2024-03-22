@@ -5,7 +5,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import dev.tunnicliff.ui.theme.DisabledAlpha
+import dev.tunnicliff.ui.theme.internal.disabled
 
 enum class CardVariant {
     ERROR,
@@ -20,8 +20,8 @@ enum class CardVariant {
 internal fun CardVariant.cardColors(): CardColors = CardDefaults.cardColors(
     containerColor = containerColor(),
     contentColor = contentColor(),
-    disabledContainerColor = containerColor().copy(DisabledAlpha),
-    disabledContentColor = MaterialTheme.colorScheme.inverseOnSurface.copy(DisabledAlpha),
+    disabledContainerColor = containerColor().disabled(),
+    disabledContentColor = MaterialTheme.colorScheme.inverseOnSurface.disabled(),
 )
 
 @Composable
