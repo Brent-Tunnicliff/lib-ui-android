@@ -1,9 +1,10 @@
 package dev.tunnicliff.ui.component.card.internal
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,36 +21,41 @@ internal data class CardPreviewerParams(
 )
 
 @Composable
-internal fun CardPreviewer(content: @Composable ColumnScope.(CardPreviewerParams) -> Unit) {
+internal fun CardPreviewer(content: @Composable (CardPreviewerParams) -> Unit) {
     ThemedPreviewer {
-        Column {
-            CardVariant.entries.forEach { variant ->
-                Text(
-                    modifier = Modifier.padding(start = 8.dp),
-                    text = variant.name
-                )
-
-                content(
-                    CardPreviewerParams(
-                        enabled = true,
-                        onClick = null,
-                        modifier = Modifier.padding(8.dp),
-                        variant = variant
+        Surface(
+            // Using inverse makes it easier to see the cards.
+            color = MaterialTheme.colorScheme.inverseSurface
+        ) {
+            Column {
+                CardVariant.entries.forEach { variant ->
+                    Text(
+                        modifier = Modifier.padding(start = 8.dp),
+                        text = variant.name
                     )
-                )
 
-                listOf(true, false).forEach { enabled ->
                     content(
                         CardPreviewerParams(
-                            enabled = enabled,
-                            onClick = {},
+                            enabled = true,
+                            onClick = null,
                             modifier = Modifier.padding(8.dp),
                             variant = variant
                         )
                     )
-                }
 
-                HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
+                    listOf(true, false).forEach { enabled ->
+                        content(
+                            CardPreviewerParams(
+                                enabled = enabled,
+                                onClick = {},
+                                modifier = Modifier.padding(8.dp),
+                                variant = variant
+                            )
+                        )
+                    }
+
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
+                }
             }
         }
     }
@@ -57,7 +63,7 @@ internal fun CardPreviewer(content: @Composable ColumnScope.(CardPreviewerParams
 
 @Preview(showBackground = true)
 @Composable
-private fun CardPreviewerPreview() {
+private fun Preview() {
     CardPreviewer { params ->
         BaseCard(
             modifier = params.modifier,

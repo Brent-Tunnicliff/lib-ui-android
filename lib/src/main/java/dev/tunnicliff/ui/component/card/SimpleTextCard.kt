@@ -1,11 +1,10 @@
 package dev.tunnicliff.ui.component.card
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.card.internal.BaseCard
@@ -25,10 +24,7 @@ fun SimpleTextCard(
         enabled = enabled,
         variant = variant
     ) {
-        Surface(
-            color = Color.Transparent,
-            modifier = Modifier.padding(8.dp)
-        ) {
+        Box(modifier = Modifier.padding(8.dp)) {
             Text(text = text)
         }
     }
@@ -36,7 +32,7 @@ fun SimpleTextCard(
 
 @Preview(showBackground = true)
 @Composable
-private fun SimpleTextCardPreview() {
+private fun Preview() {
     CardPreviewer {
         SimpleTextCard(
             enabled = it.enabled,

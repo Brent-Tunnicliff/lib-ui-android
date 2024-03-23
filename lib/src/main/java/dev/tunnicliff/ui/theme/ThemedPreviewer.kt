@@ -36,15 +36,22 @@ private fun Theme.isDark(): Boolean = this == Theme.DARK
 @Composable
 private fun ContentSection(theme: Theme, content: @Composable () -> Unit) {
     Box {
-        Text(text = "$theme theme")
-
         AppTheme(useDarkTheme = theme.isDark()) {
             Surface(
-                color = MaterialTheme.colorScheme.inverseSurface,
+                color = MaterialTheme.colorScheme.surface,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Box(modifier = Modifier.padding(4.dp)) {
-                    content()
+                Column {
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = "$theme theme"
+                    )
+
+                    HorizontalDivider()
+
+                    Box(modifier = Modifier.padding(4.dp)) {
+                        content()
+                    }
                 }
             }
         }
@@ -53,7 +60,7 @@ private fun ContentSection(theme: Theme, content: @Composable () -> Unit) {
 
 @Preview(showBackground = true)
 @Composable
-private fun ThemedPreviewerPreview() {
+private fun Preview() {
     ThemedPreviewer {
         Text(
             modifier = Modifier.padding(8.dp),

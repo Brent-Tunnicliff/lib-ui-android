@@ -37,7 +37,7 @@ fun SimpleTextField(
 
 @Preview(showBackground = true)
 @Composable
-private fun SimpleTextFieldPreview() {
+private fun Preview() {
     ThemedPreviewer {
         Column {
             SimpleTextField(

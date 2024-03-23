@@ -42,7 +42,7 @@ internal fun BaseCard(
 
 @Preview(showBackground = true)
 @Composable
-private fun BaseCardPreview() {
+private fun Preview() {
     CardPreviewer {
         BaseCard(
             enabled = it.enabled,

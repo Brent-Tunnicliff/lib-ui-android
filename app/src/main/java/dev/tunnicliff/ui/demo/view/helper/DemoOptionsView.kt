@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.picker.BasicPickerValue
 import dev.tunnicliff.ui.component.picker.SimplePicker
 import dev.tunnicliff.ui.component.text.SimpleTextField
+import dev.tunnicliff.ui.component.toggle.LabeledSwitch
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 sealed class DemoOptionsInput {
@@ -32,6 +33,12 @@ sealed class DemoOptionsInput {
         val initialValue: String = "",
         val onValueChange: (String) -> Unit
     ) : DemoOptionsInput()
+
+    data class Toggle(
+        val description: String,
+        val initialValue: Boolean = true,
+        val onValueChange: (Boolean) -> Unit
+    ) : DemoOptionsInput()
 }
 
 @Composable
@@ -50,6 +57,7 @@ fun DemoOptionsView(
                 when (it) {
                     is DemoOptionsInput.Picker<*> -> PickerInput(it)
                     is DemoOptionsInput.Text -> TextInput(it)
+                    is DemoOptionsInput.Toggle -> ToggleInput(it)
                 }
             }
         }
@@ -90,9 +98,18 @@ private fun TextInput(params: DemoOptionsInput.Text) {
     )
 }
 
+@Composable
+private fun ToggleInput(params: DemoOptionsInput.Toggle) {
+    LabeledSwitch(
+        label = params.description,
+        checked = params.initialValue,
+        onCheckedChange = params.onValueChange
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
-private fun DemoOptionsPreview() {
+private fun Preview() {
     ThemedPreviewer {
         DemoOptionsView(
             options = listOf(
@@ -110,6 +127,11 @@ private fun DemoOptionsPreview() {
                     values = listOf("One", "Two", "Three").map {
                         DemoOptionsInput.Picker.Option(it, it)
                     },
+                    onValueChange = {}
+                ),
+                DemoOptionsInput.Toggle(
+                    "Toggle",
+                    initialValue = true,
                     onValueChange = {}
                 ),
             )

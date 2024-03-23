@@ -90,7 +90,7 @@ fun <Value> SimplePicker(
 
 @Preview(showBackground = true)
 @Composable
-private fun SimplePickerPreview() {
+private fun Preview() {
     ThemedPreviewer {
         Column {
             val values = listOf("One", "Two", "Three").map {

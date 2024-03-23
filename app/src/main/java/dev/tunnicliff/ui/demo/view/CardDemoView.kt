@@ -24,6 +24,14 @@ import dev.tunnicliff.ui.theme.ThemedPreviewer
 @Composable
 fun CardDemoView(router: Router) {
     Column {
+        var clickable by remember {
+            mutableStateOf(true)
+        }
+
+        var enabled by remember {
+            mutableStateOf(true)
+        }
+
         var variant by remember {
             mutableStateOf(CardVariant.PRIMARY)
         }
@@ -50,6 +58,20 @@ fun CardDemoView(router: Router) {
                     onValueChange = {
                         text = it
                     }
+                ),
+                DemoOptionsInput.Toggle(
+                    description = "Clickable",
+                    initialValue = clickable,
+                    onValueChange = {
+                        clickable = it
+                    }
+                ),
+                DemoOptionsInput.Toggle(
+                    description = "Enabled",
+                    initialValue = enabled,
+                    onValueChange = {
+                        enabled = it
+                    }
                 )
             )
         )
@@ -57,14 +79,20 @@ fun CardDemoView(router: Router) {
         SimpleTextCard(
             modifier = Modifier.padding(8.dp),
             text = text,
-            variant = variant
+            variant = variant,
+            enabled = enabled,
+            onClick = if (clickable) {
+                {}
+            } else {
+                null
+            }
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun CardDemoViewPreview() {
+private fun Preview() {
     ThemedPreviewer {
         CardDemoView(router = PreviewRouter())
     }

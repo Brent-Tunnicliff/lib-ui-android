@@ -21,7 +21,7 @@ fun ComponentListView(router: Router) {
 
 @Preview(showBackground = true)
 @Composable
-private fun ComponentListViewPreview() {
+private fun Preview() {
     ThemedPreviewer {
         ComponentListView(router = PreviewRouter())
     }
