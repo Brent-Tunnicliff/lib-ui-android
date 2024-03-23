@@ -2,7 +2,7 @@ package dev.tunnicliff.ui.component.picker
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -44,7 +44,6 @@ fun <Value> SimplePicker(
     }
 
     ExposedDropdownMenuBox(
-//        modifier = modifier,//.fillMaxWidth(),
         expanded = expanded,
         onExpandedChange = {
             expanded = enabled && !expanded
@@ -61,7 +60,7 @@ fun <Value> SimplePicker(
             colors = variant.textFieldColors(),
             modifier = Modifier
                 .menuAnchor()
-                .fillMaxSize()
+                .fillMaxWidth()
         )
 
         ExposedDropdownMenu(
