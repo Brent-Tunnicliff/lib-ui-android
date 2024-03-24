@@ -17,12 +17,12 @@ import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.component.card.SimpleTextCard
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsInput
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsView
-import dev.tunnicliff.ui.demo.view.helper.PreviewRouter
-import dev.tunnicliff.ui.demo.view.helper.Router
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
+// region View
+
 @Composable
-fun CardDemoView(router: Router) {
+fun CardDemoView() {
     Column {
         var clickable by remember {
             mutableStateOf(true)
@@ -94,18 +94,24 @@ fun CardDemoView(router: Router) {
 @Composable
 private fun Preview() {
     ThemedPreviewer {
-        CardDemoView(router = PreviewRouter())
+        CardDemoView()
     }
 }
 
-const val CardDemoViewRoute = "CardDemoView"
+// endregion
 
-fun NavGraphBuilder.cardDemoView(router: Router) {
-    composable(CardDemoViewRoute) {
-        CardDemoView(router)
+// region Navigation
+
+private const val ROUTE = "CardDemoView"
+
+fun NavGraphBuilder.cardDemoView() {
+    composable(ROUTE) {
+        CardDemoView()
     }
 }
 
 fun NavController.navigateToCardDemoView() {
-    this.navigate(CardDemoViewRoute)
+    navigate(ROUTE)
 }
+
+// endregion

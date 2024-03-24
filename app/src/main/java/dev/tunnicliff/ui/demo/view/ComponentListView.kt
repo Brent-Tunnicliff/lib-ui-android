@@ -7,14 +7,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import dev.tunnicliff.ui.demo.view.helper.PreviewRouter
-import dev.tunnicliff.ui.demo.view.helper.Router
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
+// region View
 
 @Composable
-fun ComponentListView(router: Router) {
-    Button(onClick = { router.navigateToCardDemoView() }) {
+fun ComponentListView(navigateToCardDemoView: () -> Unit) {
+    Button(onClick = navigateToCardDemoView) {
         Text(text = "Placeholder")
     }
 }
@@ -23,18 +22,26 @@ fun ComponentListView(router: Router) {
 @Composable
 private fun Preview() {
     ThemedPreviewer {
-        ComponentListView(router = PreviewRouter())
+        ComponentListView(navigateToCardDemoView = {})
     }
 }
 
-const val ComponentListViewRoute = "ComponentListView"
+// endregion
 
-fun NavGraphBuilder.componentListView(router: Router) {
-    composable(ComponentListViewRoute) {
-        ComponentListView(router)
+// region Navigation
+
+private const val ROUTE = "ComponentListView"
+
+const val START_DESTINATION = ROUTE
+
+fun NavGraphBuilder.componentListView(navigateToCardDemoView: () -> Unit) {
+    composable(ROUTE) {
+        ComponentListView(navigateToCardDemoView = navigateToCardDemoView)
     }
 }
 
 fun NavController.navigateToComponentListView() {
-    this.navigate(ComponentListViewRoute)
+    this.navigate(ROUTE)
 }
+
+// endregion
