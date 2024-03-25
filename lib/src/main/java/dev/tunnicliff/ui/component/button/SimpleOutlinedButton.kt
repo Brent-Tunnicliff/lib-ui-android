@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dev.tunnicliff.ui.helper.Constants
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 @Composable
@@ -49,7 +50,7 @@ private fun Preview() {
             }
 
             SimpleOutlinedButton(
-                text = "This is a very, very long piece of text to see how it is handled in the preview",
+                text = Constants.veryLongText,
                 onClick = {}
             )
         }

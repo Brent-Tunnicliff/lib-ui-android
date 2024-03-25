@@ -47,7 +47,7 @@ internal fun PickerVariant.menuItemBackgroundColor(): Color = when (this) {
 @Composable
 internal fun PickerVariant.menuItemColors(): MenuItemColors = MenuDefaults.itemColors(
     textColor = menuItemContentColor(),
-    disabledTextColor = menuItemContentColor().disabled()
+    disabledTextColor = MaterialTheme.colorScheme.onSurface.disabled()
 )
 
 @Composable
@@ -74,7 +74,7 @@ private fun PickerVariant.disabledContainerColor(): Color =
 
 @Composable
 private fun disabledContentColor(): Color =
-    MaterialTheme.colorScheme.inverseOnSurface.disabled()
+    MaterialTheme.colorScheme.onSurface.disabled()
 
 @Composable
 private fun PickerVariant.menuItemContentColor(): Color = when (this) {
