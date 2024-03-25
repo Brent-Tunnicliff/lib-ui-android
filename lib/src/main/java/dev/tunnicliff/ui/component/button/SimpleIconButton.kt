@@ -1,31 +1,34 @@
 package dev.tunnicliff.ui.component.button
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import dev.tunnicliff.ui.component.button.internal.ButtonPreviewer
-import dev.tunnicliff.ui.helper.Constants
-import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 @Composable
-fun SimpleButton(
-    text: String,
+fun SimpleIconButton(
+    icon: ImageVector,
+    contentDescription: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     variant: ButtonVariant = ButtonVariant.PRIMARY,
     enabled: Boolean = true
 ) {
-    Button(
+    IconButton(
         onClick = onClick,
-        colors = variant.filledButtonColors(),
-        enabled = enabled,
         modifier = modifier,
+        colors = variant.iconButtonColors(),
+        enabled = enabled
     ) {
-        Text(
-            text = text,
-            color = variant.filledTextColor(enabled = enabled)
+        Icon(
+            imageVector = icon,
+            contentDescription = contentDescription,
+            tint = variant.filledTextColor(enabled = enabled)
         )
     }
 }
@@ -34,22 +37,12 @@ fun SimpleButton(
 @Composable
 private fun Preview() {
     ButtonPreviewer {
-        SimpleButton(
-            text = "Button",
+        SimpleIconButton(
+            icon = Icons.Default.Add,
+            contentDescription = "Account button",
             onClick = {},
             variant = it.variant,
             enabled = it.enabled
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun WrappingPreview() {
-    ThemedPreviewer {
-        SimpleButton(
-            text = Constants.veryLongText,
-            onClick = {}
         )
     }
 }
