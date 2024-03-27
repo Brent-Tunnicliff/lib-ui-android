@@ -1,5 +1,7 @@
 # lib-ui-android
 
+[![](https://jitpack.io/v/Brent-Tunnicliff/lib-ui-android.svg)](https://jitpack.io/#Brent-Tunnicliff/lib-ui-android)
+
 Common UI components for my apps.
 
 Project contains the library `lib/` and a demo app `app/`.
