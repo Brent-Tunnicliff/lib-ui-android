@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.tunnicliff.ui.component.card.BaseCard
 import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 

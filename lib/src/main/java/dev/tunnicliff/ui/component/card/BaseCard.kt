@@ -1,4 +1,4 @@
-package dev.tunnicliff.ui.component.card.internal
+package dev.tunnicliff.ui.component.card
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,11 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.tunnicliff.ui.component.card.CardVariant
-import dev.tunnicliff.ui.component.card.cardColors
+import dev.tunnicliff.ui.component.card.internal.CardPreviewer
 
 @Composable
-internal fun BaseCard(
+fun BaseCard(
     modifier: Modifier,
     variant: CardVariant,
     onClick: (() -> Unit)? = null,
