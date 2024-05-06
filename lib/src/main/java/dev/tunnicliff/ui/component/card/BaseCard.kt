@@ -14,7 +14,7 @@ import dev.tunnicliff.ui.component.card.internal.CardPreviewer
 @Composable
 fun BaseCard(
     modifier: Modifier,
-    variant: CardVariant,
+    variant: CardVariant = CardVariant.SURFACE,
     onClick: (() -> Unit)? = null,
     enabled: Boolean = true,
     content: @Composable ColumnScope.() -> Unit
