@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.toggle.ToggleVariant
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 internal data class TogglePreviewerParams(
@@ -18,8 +19,11 @@ internal data class TogglePreviewerParams(
 )
 
 @Composable
-internal fun TogglePreviewer(content: @Composable (TogglePreviewerParams) -> Unit) {
-    ThemedPreviewer {
+internal fun TogglePreviewer(
+    theme: PreviewerTheme,
+    content: @Composable (TogglePreviewerParams) -> Unit
+) {
+    ThemedPreviewer(theme) {
         Box(modifier = Modifier.padding(start = 8.dp)) {
             Column {
                 ToggleVariant.entries.forEach { variant ->

@@ -11,6 +11,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dev.tunnicliff.ui.helper.Constants
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 @Composable
@@ -35,33 +37,52 @@ fun SimpleTextField(
     )
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    ThemedPreviewer {
-        Column {
-            SimpleTextField(
-                description = "Enter value",
-                onValueChange = {}
-            )
+private fun PreviewLightTheme() {
+    ThemedPreviewer(PreviewerTheme.LIGHT) {
+        PreviewContent()
+    }
+}
 
-            SimpleTextField(
-                description = "Enter value",
-                initialValue = "Value",
-                onValueChange = {}
-            )
+@Preview
+@Composable
+private fun PreviewDarkTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
+        PreviewContent()
+    }
+}
 
-            SimpleTextField(
-                description = "This is a very, very, very long description so we can test how it behaves.",
-                initialValue = "",
-                onValueChange = {}
-            )
+@Composable
+private fun PreviewContent() {
+    Column {
+        SimpleTextField(
+            description = "Enter value",
+            onValueChange = {}
+        )
 
-            SimpleTextField(
-                description = "This is a very, very, very long description so we can test how it behaves.",
-                initialValue = "Value",
-                onValueChange = {}
-            )
-        }
+        SimpleTextField(
+            description = "Enter value",
+            initialValue = "Value",
+            onValueChange = {}
+        )
+
+        SimpleTextField(
+            description = "Enter value",
+            initialValue = Constants.veryLongText,
+            onValueChange = {}
+        )
+
+        SimpleTextField(
+            description = Constants.veryLongText,
+            initialValue = "",
+            onValueChange = {}
+        )
+
+        SimpleTextField(
+            description = Constants.veryLongText,
+            initialValue = "Value",
+            onValueChange = {}
+        )
     }
 }

@@ -1,4 +1,4 @@
-package dev.tunnicliff.ui.component.card.internal
+package dev.tunnicliff.ui.component.list.internal
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -9,53 +9,40 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.tunnicliff.ui.component.card.CardVariant
+import dev.tunnicliff.ui.component.list.ListVariant
+import dev.tunnicliff.ui.theme.AppTheme
 import dev.tunnicliff.ui.theme.PreviewerTheme
-import dev.tunnicliff.ui.theme.ThemedPreviewer
 
-internal data class CardPreviewerParams(
-    val enabled: Boolean,
-    val onClick: (() -> Unit)?,
+internal data class ListPreviewerParams(
     val modifier: Modifier,
-    val variant: CardVariant
+    val variant: ListVariant
 )
 
 @Composable
-internal fun CardPreviewer(
+internal fun ListPreviewer(
     theme: PreviewerTheme,
-    content: @Composable (CardPreviewerParams) -> Unit
+    content: @Composable (ListPreviewerParams) -> Unit
 ) {
-    ThemedPreviewer(theme) {
+    // We are unable to use `ThemedPreviewer`
+    // because the multiple lazy columns cause rendering errors.
+    AppTheme(useDarkTheme = theme == PreviewerTheme.DARK) {
         Surface(
             // Using inverse makes it easier to see the cards.
             color = MaterialTheme.colorScheme.inverseSurface
         ) {
             Column {
-                CardVariant.entries.forEach { variant ->
+                ListVariant.entries.forEach { variant ->
                     Text(
                         modifier = Modifier.padding(start = 8.dp),
                         text = variant.name
                     )
 
                     content(
-                        CardPreviewerParams(
-                            enabled = true,
-                            onClick = null,
+                        ListPreviewerParams(
                             modifier = Modifier.padding(8.dp),
                             variant = variant
                         )
                     )
-
-                    listOf(true, false).forEach { enabled ->
-                        content(
-                            CardPreviewerParams(
-                                enabled = enabled,
-                                onClick = {},
-                                modifier = Modifier.padding(8.dp),
-                                variant = variant
-                            )
-                        )
-                    }
 
                     HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
                 }

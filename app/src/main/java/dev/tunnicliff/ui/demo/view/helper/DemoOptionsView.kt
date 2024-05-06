@@ -13,6 +13,7 @@ import dev.tunnicliff.ui.component.picker.BasicPickerValue
 import dev.tunnicliff.ui.component.picker.SimplePicker
 import dev.tunnicliff.ui.component.text.SimpleTextField
 import dev.tunnicliff.ui.component.toggle.LabeledSwitch
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 sealed class DemoOptionsInput {
@@ -107,34 +108,47 @@ private fun ToggleInput(params: DemoOptionsInput.Toggle) {
     )
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    ThemedPreviewer {
-        DemoOptionsView(
-            options = listOf(
-                DemoOptionsInput.Text(
-                    "Text Input",
-                    onValueChange = {}
-                ),
-                DemoOptionsInput.Text(
-                    "Text Input with default value",
-                    initialValue = "Hello World!",
-                    onValueChange = {}
-                ),
-                DemoOptionsInput.Picker(
-                    "Picker",
-                    values = listOf("One", "Two", "Three").map {
-                        DemoOptionsInput.Picker.Option(it, it)
-                    },
-                    onValueChange = {}
-                ),
-                DemoOptionsInput.Toggle(
-                    "Toggle",
-                    initialValue = true,
-                    onValueChange = {}
-                ),
-            )
-        )
+private fun PreviewLightTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
+        PreviewContent()
     }
+}
+
+@Preview
+@Composable
+private fun PreviewDarkTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
+        PreviewContent()
+    }
+}
+
+@Composable
+private fun PreviewContent() {
+    DemoOptionsView(
+        options = listOf(
+            DemoOptionsInput.Text(
+                "Text Input",
+                onValueChange = {}
+            ),
+            DemoOptionsInput.Text(
+                "Text Input with default value",
+                initialValue = "Hello World!",
+                onValueChange = {}
+            ),
+            DemoOptionsInput.Picker(
+                "Picker",
+                values = listOf("One", "Two", "Three").map {
+                    DemoOptionsInput.Picker.Option(it, it)
+                },
+                onValueChange = {}
+            ),
+            DemoOptionsInput.Toggle(
+                "Toggle",
+                initialValue = true,
+                onValueChange = {}
+            ),
+        )
+    )
 }

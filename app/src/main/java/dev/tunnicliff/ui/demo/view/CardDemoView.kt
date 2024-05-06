@@ -17,6 +17,7 @@ import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.component.card.SimpleTextCard
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsInput
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsView
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 // region View
@@ -90,10 +91,18 @@ fun CardDemoView() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    ThemedPreviewer {
+private fun PreviewLightTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
+        CardDemoView()
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewDarkTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
         CardDemoView()
     }
 }

@@ -1,14 +1,13 @@
 package dev.tunnicliff.ui.component.card
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.card.internal.CardPreviewer
+import dev.tunnicliff.ui.component.card.internal.CardPreviewerParams
 import dev.tunnicliff.ui.helper.Constants
+import dev.tunnicliff.ui.theme.PreviewerTheme
 
 @Composable
 fun SimpleTextCard(
@@ -24,22 +23,40 @@ fun SimpleTextCard(
         enabled = enabled,
         variant = variant
     ) {
-        Box(modifier = Modifier.padding(8.dp)) {
-            Text(text = text)
-        }
+        Text(text = text)
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    CardPreviewer {
+private fun PreviewLightTheme() {
+    CardPreviewer(PreviewerTheme.LIGHT) {
+        PreviewContent(it)
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewDarkTheme() {
+    CardPreviewer(PreviewerTheme.DARK) {
+        PreviewContent(it)
+    }
+}
+
+@Composable
+private fun PreviewContent(params: CardPreviewerParams) {
+    BaseCard(
+        modifier = params.modifier,
+        variant = params.variant,
+        onClick = params.onClick,
+        enabled = params.enabled
+    ) {
         SimpleTextCard(
-            enabled = it.enabled,
-            onClick = it.onClick,
-            modifier = it.modifier,
+            enabled = params.enabled,
+            onClick = params.onClick,
+            modifier = params.modifier,
             text = Constants.veryLongText,
-            variant = it.variant
+            variant = params.variant
         )
     }
 }

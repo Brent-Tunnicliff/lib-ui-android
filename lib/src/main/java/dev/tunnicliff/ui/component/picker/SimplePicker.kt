@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.helper.Constants
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 data class BasicPickerValue<Value>(
@@ -90,45 +91,58 @@ fun <Value> SimplePicker(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    ThemedPreviewer {
-        Column {
-            val values = listOf("One", "Two", "Three", Constants.veryLongText).map {
-                BasicPickerValue(it)
-            }
+private fun PreviewLightTheme() {
+    ThemedPreviewer(PreviewerTheme.LIGHT) {
+        PreviewContent()
+    }
+}
 
-            PickerVariant.entries.forEach { variant ->
-                Text(
-                    modifier = Modifier.padding(start = 8.dp),
-                    text = variant.name
+@Preview
+@Composable
+private fun PreviewDarkTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
+        PreviewContent()
+    }
+}
+
+@Composable
+private fun PreviewContent() {
+    Column {
+        val values = listOf("One", "Two", "Three", Constants.veryLongText).map {
+            BasicPickerValue(it)
+        }
+
+        PickerVariant.entries.forEach { variant ->
+            Text(
+                modifier = Modifier.padding(start = 8.dp),
+                text = variant.name
+            )
+
+            listOf(true, false).forEach { enabled ->
+                SimplePicker(
+                    values = values,
+                    onValueChanged = {},
+                    variant = variant,
+                    enabled = enabled
                 )
 
-                listOf(true, false).forEach { enabled ->
-                    SimplePicker(
-                        values = values,
-                        onValueChanged = {},
-                        variant = variant,
-                        enabled = enabled
-                    )
+                SimplePicker(
+                    values = values,
+                    initialValue = "Please select",
+                    onValueChanged = {},
+                    variant = variant,
+                    enabled = enabled
+                )
 
-                    SimplePicker(
-                        values = values,
-                        initialValue = "Please select",
-                        onValueChanged = {},
-                        variant = variant,
-                        enabled = enabled
-                    )
-
-                    SimplePicker(
-                        values = values,
-                        initialValue = Constants.veryLongText,
-                        onValueChanged = {},
-                        variant = variant,
-                        enabled = enabled
-                    )
-                }
+                SimplePicker(
+                    values = values,
+                    initialValue = Constants.veryLongText,
+                    onValueChanged = {},
+                    variant = variant,
+                    enabled = enabled
+                )
             }
         }
     }

@@ -7,6 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 // region View
@@ -18,10 +19,18 @@ fun ComponentListView(navigateToCardDemoView: () -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    ThemedPreviewer {
+private fun PreviewLightTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
+        ComponentListView(navigateToCardDemoView = {})
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewDarkTheme() {
+    ThemedPreviewer(PreviewerTheme.DARK) {
         ComponentListView(navigateToCardDemoView = {})
     }
 }
