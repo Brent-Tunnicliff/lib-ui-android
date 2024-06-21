@@ -45,18 +45,11 @@ private fun PreviewDarkTheme() {
 
 @Composable
 private fun PreviewContent(params: CardPreviewerParams) {
-    BaseCard(
-        modifier = params.modifier,
-        variant = params.variant,
+    SimpleTextCard(
+        enabled = params.enabled,
         onClick = params.onClick,
-        enabled = params.enabled
-    ) {
-        SimpleTextCard(
-            enabled = params.enabled,
-            onClick = params.onClick,
-            modifier = params.modifier,
-            text = Constants.veryLongText,
-            variant = params.variant
-        )
-    }
+        modifier = params.modifier,
+        text = Constants.veryLongText,
+        variant = params.variant
+    )
 }

@@ -24,13 +24,15 @@ fun BaseCard(
     enabled: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    Box(modifier = modifier.padding(8.dp)) {
+    Box(
+        modifier = modifier
+    ) {
         if (onClick == null) {
             Card(
                 colors = variant.cardColors(),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Box(modifier = modifier.padding(4.dp)) {
+                Box(modifier = Modifier.padding(8.dp)) {
                     content()
                 }
             }
@@ -41,7 +43,7 @@ fun BaseCard(
                 onClick = onClick,
                 enabled = enabled,
             ) {
-                Box(modifier = modifier.padding(4.dp)) {
+                Box(modifier = Modifier.padding(8.dp)) {
                     content()
                 }
             }
@@ -80,7 +82,8 @@ private fun PreviewContent(params: CardPreviewerParams) {
 
             SimpleButton(
                 text = "Click me",
-                onClick = {}
+                onClick = {},
+                enabled = params.enabled
             )
         }
     }
