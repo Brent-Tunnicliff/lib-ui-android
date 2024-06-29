@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dev.tunnicliff.ui.component.card.internal.CardPreviewer
-import dev.tunnicliff.ui.component.card.internal.CardPreviewerParams
 import dev.tunnicliff.ui.helper.Constants
 import dev.tunnicliff.ui.theme.PreviewerTheme
 
@@ -29,27 +28,21 @@ fun SimpleTextCard(
 
 @Preview
 @Composable
-private fun PreviewLightTheme() {
-    CardPreviewer(PreviewerTheme.LIGHT) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
 @Preview
 @Composable
-private fun PreviewDarkTheme() {
-    CardPreviewer(PreviewerTheme.DARK) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 
 @Composable
-private fun PreviewContent(params: CardPreviewerParams) {
-    SimpleTextCard(
-        enabled = params.enabled,
-        onClick = params.onClick,
-        modifier = params.modifier,
-        text = Constants.VERY_LONG_TEXT,
-        variant = params.variant
-    )
+private fun PreviewContent(theme: PreviewerTheme) {
+    CardPreviewer(theme) { params ->
+        SimpleTextCard(
+            enabled = params.enabled,
+            onClick = params.onClick,
+            modifier = params.modifier,
+            text = Constants.VERY_LONG_TEXT,
+            variant = params.variant
+        )
+    }
 }

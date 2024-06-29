@@ -17,10 +17,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ThemedPreviewer(
     theme: PreviewerTheme,
+    enablePreviewScrolling: Boolean = true,
     content: @Composable () -> Unit
 ) {
     AppTheme(useDarkTheme = theme == PreviewerTheme.DARK) {
-        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        Column(
+            modifier = if (enablePreviewScrolling) Modifier.verticalScroll(rememberScrollState()) else Modifier
+        ) {
             Surface(
                 color = MaterialTheme.colorScheme.surface,
                 modifier = Modifier.fillMaxWidth()

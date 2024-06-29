@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.list.internal.ListPreviewer
-import dev.tunnicliff.ui.component.list.internal.ListPreviewerParams
 import dev.tunnicliff.ui.theme.PreviewerTheme
 
 @Composable
@@ -37,47 +36,20 @@ fun BaseList(
 // region Preview - Light
 @Preview(group = "light")
 @Composable
-private fun PreviewLightModePrimary() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.PRIMARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModePrimary() = PreviewContent(PreviewerTheme.LIGHT, ListVariant.PRIMARY)
 
 @Preview(group = "light")
 @Composable
-private fun PreviewLightModeSecondary() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.SECONDARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModeSecondary() =
+    PreviewContent(PreviewerTheme.LIGHT, ListVariant.SECONDARY)
 
 @Preview(group = "light")
 @Composable
-private fun PreviewLightModeSurface() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.SURFACE
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModeSurface() = PreviewContent(PreviewerTheme.LIGHT, ListVariant.SURFACE)
 
 @Preview(group = "light")
 @Composable
-private fun PreviewLightModeTertiary() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.TERTIARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModeTertiary() = PreviewContent(PreviewerTheme.LIGHT, ListVariant.TERTIARY)
 
 // endregion
 
@@ -85,58 +57,32 @@ private fun PreviewLightModeTertiary() {
 
 @Preview(group = "dark")
 @Composable
-private fun PreviewDarkModePrimary() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.PRIMARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModePrimary() = PreviewContent(PreviewerTheme.DARK, ListVariant.PRIMARY)
 
 @Preview(group = "dark")
 @Composable
-private fun PreviewDarkModeSecondary() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.SECONDARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModeSecondary() = PreviewContent(PreviewerTheme.DARK, ListVariant.SECONDARY)
 
 @Preview(group = "dark")
 @Composable
-private fun PreviewDarkModeSurface() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.SURFACE
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModeSurface() = PreviewContent(PreviewerTheme.DARK, ListVariant.SURFACE)
 
 @Preview(group = "dark")
 @Composable
-private fun PreviewDarkModeTertiary() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.TERTIARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModeTertiary() = PreviewContent(PreviewerTheme.DARK, ListVariant.TERTIARY)
 
 // endregion
 
 @Composable
-private fun PreviewContent(params: ListPreviewerParams) {
-    BaseList(
-        modifier = params.modifier,
-        variant = params.variant
-    ) {
-        items(3) { itemNumber ->
-            Text("Row $itemNumber")
+private fun PreviewContent(theme: PreviewerTheme, variant: ListVariant) {
+    ListPreviewer(theme, variant) { params ->
+        BaseList(
+            modifier = params.modifier,
+            variant = params.variant
+        ) {
+            items(3) { itemNumber ->
+                Text("Row $itemNumber")
+            }
         }
     }
 }

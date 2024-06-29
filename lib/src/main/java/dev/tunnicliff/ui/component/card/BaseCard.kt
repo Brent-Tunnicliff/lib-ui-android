@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.button.SimpleButton
 import dev.tunnicliff.ui.component.card.internal.CardPreviewer
-import dev.tunnicliff.ui.component.card.internal.CardPreviewerParams
 import dev.tunnicliff.ui.helper.Constants
 import dev.tunnicliff.ui.theme.PreviewerTheme
 
@@ -59,38 +58,32 @@ fun BaseCard(
 
 @Preview
 @Composable
-private fun PreviewLightTheme() {
-    CardPreviewer(PreviewerTheme.LIGHT) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
 @Preview
 @Composable
-private fun PreviewDarkTheme() {
-    CardPreviewer(PreviewerTheme.DARK) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 
 @Composable
-private fun PreviewContent(params: CardPreviewerParams) {
-    BaseCard(
-        modifier = params.modifier,
-        variant = params.variant,
-        onClick = params.onClick,
-        enabled = params.enabled
-    ) {
-        Column {
-            Text("Hello World!")
+private fun PreviewContent(theme: PreviewerTheme) {
+    CardPreviewer(theme) { params ->
+        BaseCard(
+            modifier = params.modifier,
+            variant = params.variant,
+            onClick = params.onClick,
+            enabled = params.enabled
+        ) {
+            Column {
+                Text("Hello World!")
 
-            Text(Constants.VERY_LONG_TEXT)
+                Text(Constants.VERY_LONG_TEXT)
 
-            SimpleButton(
-                text = "Click me",
-                onClick = {},
-                enabled = params.enabled
-            )
+                SimpleButton(
+                    text = "Click me",
+                    onClick = {},
+                    enabled = params.enabled
+                )
+            }
         }
     }
 }

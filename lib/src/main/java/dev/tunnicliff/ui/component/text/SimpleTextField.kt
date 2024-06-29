@@ -39,50 +39,44 @@ fun SimpleTextField(
 
 @Preview
 @Composable
-private fun PreviewLightTheme() {
-    ThemedPreviewer(PreviewerTheme.LIGHT) {
-        PreviewContent()
-    }
-}
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
 @Preview
 @Composable
-private fun PreviewDarkTheme() {
-    ThemedPreviewer(PreviewerTheme.DARK) {
-        PreviewContent()
-    }
-}
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 
 @Composable
-private fun PreviewContent() {
-    Column {
-        SimpleTextField(
-            description = "Enter value",
-            onValueChange = {}
-        )
+private fun PreviewContent(theme: PreviewerTheme) {
+    ThemedPreviewer(theme) {
+        Column {
+            SimpleTextField(
+                description = "Enter value",
+                onValueChange = {}
+            )
 
-        SimpleTextField(
-            description = "Enter value",
-            initialValue = "Value",
-            onValueChange = {}
-        )
+            SimpleTextField(
+                description = "Enter value",
+                initialValue = "Value",
+                onValueChange = {}
+            )
 
-        SimpleTextField(
-            description = "Enter value",
-            initialValue = Constants.VERY_LONG_TEXT,
-            onValueChange = {}
-        )
+            SimpleTextField(
+                description = "Enter value",
+                initialValue = Constants.VERY_LONG_TEXT,
+                onValueChange = {}
+            )
 
-        SimpleTextField(
-            description = Constants.VERY_LONG_TEXT,
-            initialValue = "",
-            onValueChange = {}
-        )
+            SimpleTextField(
+                description = Constants.VERY_LONG_TEXT,
+                initialValue = "",
+                onValueChange = {}
+            )
 
-        SimpleTextField(
-            description = Constants.VERY_LONG_TEXT,
-            initialValue = "Value",
-            onValueChange = {}
-        )
+            SimpleTextField(
+                description = Constants.VERY_LONG_TEXT,
+                initialValue = "Value",
+                onValueChange = {}
+            )
+        }
     }
 }

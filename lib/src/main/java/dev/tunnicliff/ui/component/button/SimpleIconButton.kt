@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.button.internal.ButtonPreviewer
-import dev.tunnicliff.ui.component.button.internal.ButtonPreviewerParams
 import dev.tunnicliff.ui.helper.Constants
 import dev.tunnicliff.ui.theme.PreviewerTheme
 
@@ -45,27 +44,21 @@ fun SimpleIconButton(
 
 @Preview
 @Composable
-private fun PreviewLightTheme() {
-    ButtonPreviewer(PreviewerTheme.LIGHT) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
 @Preview
 @Composable
-private fun PreviewDarkTheme() {
-    ButtonPreviewer(PreviewerTheme.DARK) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 
 @Composable
-private fun PreviewContent(params: ButtonPreviewerParams) {
-    SimpleIconButton(
-        icon = Icons.Default.Add,
-        contentDescription = "Account button",
-        onClick = {},
-        variant = params.variant,
-        enabled = params.enabled
-    )
+private fun PreviewContent(theme: PreviewerTheme) {
+    ButtonPreviewer(theme) { params ->
+        SimpleIconButton(
+            icon = Icons.Default.Add,
+            contentDescription = "Account button",
+            onClick = {},
+            variant = params.variant,
+            enabled = params.enabled
+        )
+    }
 }

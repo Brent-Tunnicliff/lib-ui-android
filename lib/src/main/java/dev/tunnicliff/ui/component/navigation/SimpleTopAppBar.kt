@@ -28,8 +28,8 @@ import dev.tunnicliff.ui.component.card.BaseCard
 import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.component.list.SimpleList
 import dev.tunnicliff.ui.helper.Constants
-import dev.tunnicliff.ui.theme.AppTheme
 import dev.tunnicliff.ui.theme.PreviewerTheme
+import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 @Composable
 fun SimpleTopAppBar(
@@ -90,19 +90,15 @@ private fun AppBar(
 
 @Preview
 @Composable
-private fun PreviewLightTheme() {
-    PreviewContent(PreviewerTheme.LIGHT)
-}
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
 @Preview
 @Composable
-private fun PreviewDarkTheme() {
-    PreviewContent(PreviewerTheme.DARK)
-}
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 
 @Composable
 private fun PreviewContent(theme: PreviewerTheme) {
-    AppTheme(useDarkTheme = theme == PreviewerTheme.DARK) {
+    ThemedPreviewer(theme = theme, enablePreviewScrolling = false) {
         Scaffold(
             topBar = {
                 AppBar(

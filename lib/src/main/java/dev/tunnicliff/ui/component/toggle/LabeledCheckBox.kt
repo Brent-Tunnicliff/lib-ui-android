@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import dev.tunnicliff.ui.component.toggle.internal.TogglePreviewer
-import dev.tunnicliff.ui.component.toggle.internal.TogglePreviewerParams
 import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.internal.disabled
 
@@ -46,27 +45,21 @@ fun LabeledCheckBox(
 
 @Preview
 @Composable
-private fun PreviewLightTheme() {
-    TogglePreviewer(PreviewerTheme.LIGHT) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
 @Preview
 @Composable
-private fun PreviewDarkTheme() {
-    TogglePreviewer(PreviewerTheme.DARK) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 
 @Composable
-private fun PreviewContent(params: TogglePreviewerParams) {
-    LabeledCheckBox(
-        label = "Label",
-        checked = params.checked,
-        onCheckedChange = {},
-        variant = params.variant,
-        enabled = params.enabled
-    )
+private fun PreviewContent(theme: PreviewerTheme) {
+    TogglePreviewer(theme) { params ->
+        LabeledCheckBox(
+            label = "Label",
+            checked = params.checked,
+            onCheckedChange = {},
+            variant = params.variant,
+            enabled = params.enabled
+        )
+    }
 }

@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.toggle.internal.TogglePreviewer
-import dev.tunnicliff.ui.component.toggle.internal.TogglePreviewerParams
 import dev.tunnicliff.ui.theme.PreviewerTheme
 
 @Composable
@@ -41,33 +40,27 @@ fun SimpleSwitch(
 
 @Preview
 @Composable
-private fun PreviewLightTheme() {
-    TogglePreviewer(PreviewerTheme.LIGHT) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
 @Preview
 @Composable
-private fun PreviewDarkTheme() {
-    TogglePreviewer(PreviewerTheme.DARK) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 
 @Composable
-private fun PreviewContent(params: TogglePreviewerParams) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        SimpleSwitch(
-            checked = params.checked,
-            onCheckedChange = {},
-            variant = params.variant,
-            enabled = params.enabled
-        )
+private fun PreviewContent(theme: PreviewerTheme) {
+    TogglePreviewer(theme) { params ->
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            SimpleSwitch(
+                checked = params.checked,
+                onCheckedChange = {},
+                variant = params.variant,
+                enabled = params.enabled
+            )
 
-        Text(
-            modifier = Modifier.padding(start = 8.dp),
-            text = if (params.enabled) "enabled" else "disabled"
-        )
+            Text(
+                modifier = Modifier.padding(start = 8.dp),
+                text = if (params.enabled) "enabled" else "disabled"
+            )
+        }
     }
 }

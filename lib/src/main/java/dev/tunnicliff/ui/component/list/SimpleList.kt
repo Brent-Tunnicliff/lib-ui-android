@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.card.BaseCard
 import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.component.list.internal.ListPreviewer
-import dev.tunnicliff.ui.component.list.internal.ListPreviewerParams
 import dev.tunnicliff.ui.helper.Constants
 import dev.tunnicliff.ui.theme.PreviewerTheme
 
@@ -47,47 +46,20 @@ fun <Value> SimpleList(
 // region Preview - Light
 @Preview
 @Composable
-private fun PreviewLightModePrimary() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.PRIMARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModePrimary() = PreviewContent(PreviewerTheme.LIGHT, ListVariant.PRIMARY)
 
 @Preview
 @Composable
-private fun PreviewLightModeSecondary() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.SECONDARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModeSecondary() =
+    PreviewContent(PreviewerTheme.LIGHT, ListVariant.SECONDARY)
 
 @Preview
 @Composable
-private fun PreviewLightModeSurface() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.SURFACE
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModeSurface() = PreviewContent(PreviewerTheme.LIGHT, ListVariant.SURFACE)
 
 @Preview
 @Composable
-private fun PreviewLightModeTertiary() {
-    ListPreviewer(
-        PreviewerTheme.LIGHT,
-        ListVariant.TERTIARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewLightModeTertiary() = PreviewContent(PreviewerTheme.LIGHT, ListVariant.TERTIARY)
 
 // endregion
 
@@ -95,65 +67,39 @@ private fun PreviewLightModeTertiary() {
 
 @Preview
 @Composable
-private fun PreviewDarkModePrimary() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.PRIMARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModePrimary() = PreviewContent(PreviewerTheme.DARK, ListVariant.PRIMARY)
 
 @Preview
 @Composable
-private fun PreviewDarkModeSecondary() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.SECONDARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModeSecondary() = PreviewContent(PreviewerTheme.DARK, ListVariant.SECONDARY)
 
 @Preview
 @Composable
-private fun PreviewDarkModeSurface() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.SURFACE
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModeSurface() = PreviewContent(PreviewerTheme.DARK, ListVariant.SURFACE)
 
 @Preview
 @Composable
-private fun PreviewDarkModeTertiary() {
-    ListPreviewer(
-        PreviewerTheme.DARK,
-        ListVariant.TERTIARY
-    ) {
-        PreviewContent(it)
-    }
-}
+private fun PreviewDarkModeTertiary() = PreviewContent(PreviewerTheme.DARK, ListVariant.TERTIARY)
 
 // endregion
 
 @Composable
-private fun PreviewContent(params: ListPreviewerParams) {
+private fun PreviewContent(theme: PreviewerTheme, variant: ListVariant) {
     val disabledText = "Disabled text"
 
-    SimpleList(
-        data = listOf(
-            "Small text",
-            disabledText,
-            Constants.VERY_LONG_TEXT
-        ),
-        modifier = params.modifier,
-        variant = params.variant,
-        itemClicked = { },
-        itemEnabled = { it != disabledText }
-    ) { item ->
-        Text(item)
+    ListPreviewer(theme, variant) { params ->
+        SimpleList(
+            data = listOf(
+                "Small text",
+                disabledText,
+                Constants.VERY_LONG_TEXT
+            ),
+            modifier = params.modifier,
+            variant = params.variant,
+            itemClicked = { },
+            itemEnabled = { it != disabledText }
+        ) { item ->
+            Text(item)
+        }
     }
 }
