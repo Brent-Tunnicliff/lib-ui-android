@@ -49,7 +49,7 @@ private fun PreviewContent(params: CardPreviewerParams) {
         enabled = params.enabled,
         onClick = params.onClick,
         modifier = params.modifier,
-        text = Constants.veryLongText,
+        text = Constants.VERY_LONG_TEXT,
         variant = params.variant
     )
 }

@@ -69,18 +69,18 @@ private fun PreviewContent() {
 
         SimpleTextField(
             description = "Enter value",
-            initialValue = Constants.veryLongText,
+            initialValue = Constants.VERY_LONG_TEXT,
             onValueChange = {}
         )
 
         SimpleTextField(
-            description = Constants.veryLongText,
+            description = Constants.VERY_LONG_TEXT,
             initialValue = "",
             onValueChange = {}
         )
 
         SimpleTextField(
-            description = Constants.veryLongText,
+            description = Constants.VERY_LONG_TEXT,
             initialValue = "Value",
             onValueChange = {}
         )

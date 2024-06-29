@@ -147,7 +147,7 @@ private fun PreviewContent(params: ListPreviewerParams) {
         data = listOf(
             "Small text",
             disabledText,
-            Constants.veryLongText
+            Constants.VERY_LONG_TEXT
         ),
         modifier = params.modifier,
         variant = params.variant,

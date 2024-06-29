@@ -110,7 +110,7 @@ private fun PreviewDarkTheme() {
 @Composable
 private fun PreviewContent() {
     Column {
-        val values = listOf("One", "Two", "Three", Constants.veryLongText).map {
+        val values = listOf("One", "Two", "Three", Constants.VERY_LONG_TEXT).map {
             BasicPickerValue(it)
         }
 
@@ -138,7 +138,7 @@ private fun PreviewContent() {
 
                 SimplePicker(
                     values = values,
-                    initialValue = Constants.veryLongText,
+                    initialValue = Constants.VERY_LONG_TEXT,
                     onValueChanged = {},
                     variant = variant,
                     enabled = enabled

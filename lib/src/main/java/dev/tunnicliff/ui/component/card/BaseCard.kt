@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +40,12 @@ fun BaseCard(
         } else {
             Card(
                 colors = variant.cardColors(),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .sizeIn(
+                        minHeight = Constants.MINIMUM_TOUCH_SIZE.dp,
+                        minWidth = Constants.MINIMUM_TOUCH_SIZE.dp
+                    )
+                    .fillMaxWidth(),
                 onClick = onClick,
                 enabled = enabled,
             ) {
@@ -78,7 +84,7 @@ private fun PreviewContent(params: CardPreviewerParams) {
         Column {
             Text("Hello World!")
 
-            Text(Constants.veryLongText)
+            Text(Constants.VERY_LONG_TEXT)
 
             SimpleButton(
                 text = "Click me",
