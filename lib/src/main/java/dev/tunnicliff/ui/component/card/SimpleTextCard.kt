@@ -40,7 +40,6 @@ private fun PreviewContent(theme: PreviewerTheme) {
         SimpleTextCard(
             enabled = params.enabled,
             onClick = params.onClick,
-            modifier = params.modifier,
             text = Constants.VERY_LONG_TEXT,
             variant = params.variant
         )

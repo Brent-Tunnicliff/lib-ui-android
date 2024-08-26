@@ -25,7 +25,7 @@ fun BaseCard(
     content: @Composable () -> Unit
 ) {
     Box(
-        modifier = modifier
+        modifier = modifier.padding(8.dp)
     ) {
         if (onClick == null) {
             Card(
@@ -68,7 +68,6 @@ private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 private fun PreviewContent(theme: PreviewerTheme) {
     CardPreviewer(theme) { params ->
         BaseCard(
-            modifier = params.modifier,
             variant = params.variant,
             onClick = params.onClick,
             enabled = params.enabled

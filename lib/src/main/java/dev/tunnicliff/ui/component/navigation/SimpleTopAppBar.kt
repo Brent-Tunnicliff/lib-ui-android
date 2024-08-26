@@ -1,7 +1,9 @@
 package dev.tunnicliff.ui.component.navigation
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -36,32 +38,33 @@ fun SimpleTopAppBar(
     navController: NavHostController,
     title: String
 ) {
-    var showTopAppBar by remember {
+    var showBackButton by remember {
         mutableStateOf(false)
     }
 
     LaunchedEffect(navController.currentBackStackEntryFlow) {
-        navController.currentBackStackEntryFlow.collect {
-            val destination = it.destination
+        navController.currentBackStackEntryFlow.collect { navBackStackEntry ->
+            val destination = navBackStackEntry.destination
             val parent = destination.parent
-            showTopAppBar = destination.route?.let { it != parent?.startDestinationRoute }
-                ?: false
+            showBackButton = destination.route?.let {
+                it != parent?.startDestinationRoute
+            } ?: false
         }
     }
 
-    if (showTopAppBar) {
-        AppBar(
-            title = title,
-            backClicked = { navController.navigateUp() },
-        )
-    }
+    AppBar(
+        title = title,
+        backClicked = { navController.navigateUp() },
+        showBackButton = showBackButton
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppBar(
     title: String,
-    backClicked: () -> Unit
+    backClicked: () -> Unit,
+    showBackButton: Boolean
 ) {
     TopAppBar(
         title = {
@@ -72,10 +75,16 @@ private fun AppBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = backClicked) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back"
+            if (showBackButton) {
+                IconButton(onClick = backClicked) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back"
+                    )
+                }
+            } else {
+                Spacer(
+                    modifier = Modifier.size(48.dp)
                 )
             }
         },
@@ -103,7 +112,8 @@ private fun PreviewContent(theme: PreviewerTheme) {
             topBar = {
                 AppBar(
                     title = Constants.VERY_LONG_TEXT,
-                    backClicked = {}
+                    backClicked = {},
+                    showBackButton = true
                 )
             }
         ) {

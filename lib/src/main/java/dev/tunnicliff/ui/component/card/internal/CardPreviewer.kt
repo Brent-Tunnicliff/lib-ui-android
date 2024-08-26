@@ -16,7 +16,6 @@ import dev.tunnicliff.ui.theme.ThemedPreviewer
 internal data class CardPreviewerParams(
     val enabled: Boolean,
     val onClick: (() -> Unit)?,
-    val modifier: Modifier,
     val variant: CardVariant
 )
 
@@ -41,7 +40,6 @@ internal fun CardPreviewer(
                         CardPreviewerParams(
                             enabled = true,
                             onClick = null,
-                            modifier = Modifier.padding(8.dp),
                             variant = variant
                         )
                     )
@@ -51,7 +49,6 @@ internal fun CardPreviewer(
                             CardPreviewerParams(
                                 enabled = enabled,
                                 onClick = {},
-                                modifier = Modifier.padding(8.dp),
                                 variant = variant
                             )
                         )
