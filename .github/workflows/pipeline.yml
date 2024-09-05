@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Brent-Tunnicliff/action-setup-android@1.0.0
-      - uses: Brent-Tunnicliff/action-build-and-test-android@1.0.0-beta.1
+      - uses: Brent-Tunnicliff/action-build-and-test-android@1.0.0-beta.2
       - name: Publish to local Maven
         run: ./gradlew publishToMavenLocal
       - name: Upload lib
