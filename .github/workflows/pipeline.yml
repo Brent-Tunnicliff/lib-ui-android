@@ -8,12 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: Brent-Tunnicliff/action-setup-android@1.0.0
-      - uses: Brent-Tunnicliff/action-build-and-test-android@1.0.0
-      - name: Publish to local Maven
-        run: ./gradlew publishToMavenLocal
-      - name: Upload lib
-        uses: actions/upload-artifact@v3
-        with:
-          name: Lib generated
-          path: ~/.m2/repository
+      - uses: Brent-Tunnicliff/action-setup-android@v1
+      - uses: Brent-Tunnicliff/action-build-and-test-android@v1
+      - uses: Brent-Tunnicliff/action-publish-lib-android@v1.0.0-beta.1
