@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.ui.component.toggle.internal
 
 import androidx.compose.foundation.layout.Box

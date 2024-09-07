@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
