@@ -8,8 +8,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import dev.tunnicliff.ui.component.navigation.DefaultNavHost
 import dev.tunnicliff.ui.component.navigation.SimpleTopAppBar
 import dev.tunnicliff.ui.theme.AppTheme
 import dev.tunnicliff.ui.theme.PreviewerTheme
@@ -24,7 +24,7 @@ fun App() {
             SimpleTopAppBar(navController = navController, title = "Test")
         }) { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
-                NavHost(
+                DefaultNavHost(
                     navController = navController,
                     startDestination = START_DESTINATION
                 ) {
