@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.component.picker.BasicPickerValue
 import dev.tunnicliff.ui.component.picker.SimplePicker
-import dev.tunnicliff.ui.component.text.SimpleTextField
+import dev.tunnicliff.ui.component.textfield.SimpleTextField
 import dev.tunnicliff.ui.component.toggle.LabeledSwitch
 import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer

@@ -2,7 +2,7 @@
 activityCompose = "1.9.2"
 androidGradlePlugin = "8.5.2"
 appcompat = "1.7.0"
-composeBom = "2024.09.02"
+composeBom = "2024.09.03"
 coreKtx = "1.13.1"
 espressoCore = "3.6.1"
 junit = "4.13.2"
@@ -10,9 +10,11 @@ junitVersion = "1.2.1"
 kotlinAndroid = "1.9.22"
 lifecycleRuntimeKtx = "2.8.6"
 material = "1.12.0"
-navigationCompose = "2.8.1"
-navigationRuntimeKtx = "2.8.1"
-uiTestManifest = "1.7.2"
+navigationCompose = "2.8.2"
+navigationRuntimeKtx = "2.8.2"
+pagingCompose = "3.3.2"
+pagingComposeAndroid = "3.3.2"
+uiTestManifest = "1.7.3"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
@@ -32,6 +34,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-material3 = { module = "androidx.compose.material3:material3" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-navigation-runtime-ktx = { module = "androidx.navigation:navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-paging-compose-android = { group = "androidx.paging", name = "paging-compose-android", version.ref = "pagingComposeAndroid" }
 junit = { module = "junit:junit", version.ref = "junit" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 material3 = { module = "androidx.compose.material3:material3" }
