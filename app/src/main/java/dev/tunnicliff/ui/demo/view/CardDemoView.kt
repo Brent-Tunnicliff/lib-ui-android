@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.ui.demo.view
 
 import androidx.compose.foundation.layout.Column
@@ -17,12 +19,29 @@ import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.component.card.SimpleTextCard
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsInput
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsView
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
+
+// region Navigation
+
+private const val ROUTE = "CardDemoView"
+
+fun NavGraphBuilder.cardDemoView() {
+    composable(ROUTE) {
+        CardDemoView()
+    }
+}
+
+fun NavController.navigateToCardDemoView() {
+    navigate(ROUTE)
+}
+
+// endregion
 
 // region View
 
 @Composable
-fun CardDemoView() {
+private fun CardDemoView() {
     Column {
         var clickable by remember {
             mutableStateOf(true)
@@ -90,28 +109,23 @@ fun CardDemoView() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun Preview() {
-    ThemedPreviewer {
-        CardDemoView()
-    }
-}
-
 // endregion
 
-// region Navigation
+// region Preview
 
-private const val ROUTE = "CardDemoView"
+@Preview
+@Composable
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
 
-fun NavGraphBuilder.cardDemoView() {
-    composable(ROUTE) {
+@Preview
+@Composable
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
+
+@Composable
+private fun PreviewContent(theme: PreviewerTheme) {
+    ThemedPreviewer(theme) {
         CardDemoView()
     }
-}
-
-fun NavController.navigateToCardDemoView() {
-    navigate(ROUTE)
 }
 
 // endregion

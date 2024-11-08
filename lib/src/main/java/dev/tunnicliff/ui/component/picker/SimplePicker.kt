@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.ui.component.picker
 
 import androidx.compose.foundation.background
@@ -8,6 +10,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -19,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.tunnicliff.ui.helper.Constants
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 data class BasicPickerValue<Value>(
@@ -61,7 +65,7 @@ fun <Value> SimplePicker(
             },
             colors = variant.textFieldColors(),
             modifier = Modifier
-                .menuAnchor()
+                .menuAnchor(MenuAnchorType.PrimaryNotEditable, true)
                 .fillMaxWidth()
         )
 
@@ -90,12 +94,19 @@ fun <Value> SimplePicker(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    ThemedPreviewer {
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
+
+@Preview
+@Composable
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
+
+@Composable
+private fun PreviewContent(theme: PreviewerTheme) {
+    ThemedPreviewer(theme) {
         Column {
-            val values = listOf("One", "Two", "Three", Constants.veryLongText).map {
+            val values = listOf("One", "Two", "Three", Constants.VERY_LONG_TEXT).map {
                 BasicPickerValue(it)
             }
 
@@ -123,7 +134,7 @@ private fun Preview() {
 
                     SimplePicker(
                         values = values,
-                        initialValue = Constants.veryLongText,
+                        initialValue = Constants.VERY_LONG_TEXT,
                         onValueChanged = {},
                         variant = variant,
                         enabled = enabled

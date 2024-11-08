@@ -1,12 +1,14 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
     id("maven-publish")
-    id("org.jetbrains.kotlin.android")
 }
 
 android {
     namespace = "dev.tunnicliff.ui"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 33
@@ -35,11 +37,12 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 }
 
@@ -58,26 +61,25 @@ publishing {
 }
 
 dependencies {
-    implementation(platform("androidx.compose:compose-bom:2024.05.00"))
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
-    implementation("com.google.android.material:material:1.12.0")
+    implementation(libs.androidx.appcompat)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.paging.compose.android)
+    implementation(libs.material)
 
-    // Example of github lib.
-    // implementation("com.github.Brent-Tunnicliff:temp_poc:0.0.4")
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation(libs.junit)
 
-    testImplementation("junit:junit:4.13.2")
-
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.05.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

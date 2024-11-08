@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.ui.component.toggle
 
 import androidx.compose.foundation.layout.Row
@@ -10,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import dev.tunnicliff.ui.component.toggle.internal.TogglePreviewer
+import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.internal.disabled
 
 @Composable
@@ -42,10 +45,17 @@ fun LabeledCheckBox(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun Preview() {
-    TogglePreviewer { params ->
+private fun PreviewLightTheme() = PreviewContent(PreviewerTheme.LIGHT)
+
+@Preview
+@Composable
+private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
+
+@Composable
+private fun PreviewContent(theme: PreviewerTheme) {
+    TogglePreviewer(theme) { params ->
         LabeledCheckBox(
             label = "Label",
             checked = params.checked,

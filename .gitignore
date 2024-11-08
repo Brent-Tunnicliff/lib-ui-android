@@ -13,11 +13,13 @@ captures/
 .externalNativeBuild/
 .cxx/
 *.apk
+*.aab
 output.json
 
 # IntelliJ
 *.iml
-.idea/
+.idea/*
+!.idea/copyright/
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml

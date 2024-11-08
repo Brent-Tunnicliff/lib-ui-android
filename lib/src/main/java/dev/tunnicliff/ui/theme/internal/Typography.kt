@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.ui.theme.internal
 
 import androidx.compose.material3.Typography
