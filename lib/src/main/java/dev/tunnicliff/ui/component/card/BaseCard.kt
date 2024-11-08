@@ -27,16 +27,17 @@ fun BaseCard(
     content: @Composable () -> Unit
 ) {
     Box(
-        modifier = modifier.padding(8.dp)
+        modifier = modifier.padding(
+            horizontal = 12.dp,
+            vertical = 8.dp
+        )
     ) {
         if (onClick == null) {
             Card(
                 colors = variant.cardColors(),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Box(modifier = Modifier.padding(8.dp)) {
-                    content()
-                }
+                Content(content = content)
             }
         } else {
             Card(
@@ -50,11 +51,25 @@ fun BaseCard(
                 onClick = onClick,
                 enabled = enabled,
             ) {
-                Box(modifier = Modifier.padding(8.dp)) {
-                    content()
-                }
+                Content(content = content)
             }
         }
+    }
+}
+
+@Composable
+private fun Content(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Box(
+        modifier = modifier
+            .padding(
+                horizontal = 12.dp,
+                vertical = 8.dp
+            )
+    ) {
+        content()
     }
 }
 
