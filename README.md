@@ -1,6 +1,6 @@
 # lib-ui-android
 
-[![](https://jitpack.io/v/Brent-Tunnicliff/lib-ui-android.svg)](https://jitpack.io/#Brent-Tunnicliff/lib-ui-android)
+[![](https://jitpack.io/v/Brent-Tunnicliff/lib-ui-android.svg)](https://jitpack.io/#Brent-Tunnicliff/lib-ui-android) ![Weekly download statistics](https://jitpack.io/v/Brent-Tunnicliff/lib-ui-android/week.svg) ![Monthly download statistics](https://jitpack.io/v/Brent-Tunnicliff/lib-ui-android/month.svg)
 
 Common UI components for my apps.
 
