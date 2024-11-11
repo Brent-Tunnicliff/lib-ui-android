@@ -2,10 +2,15 @@
 
 package dev.tunnicliff.ui.component.navigation
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -38,7 +43,7 @@ import dev.tunnicliff.ui.theme.ThemedPreviewer
 @Composable
 fun SimpleTopAppBar(
     navController: NavHostController,
-    title: String
+    title: String = ""
 ) {
     var showBackButton by remember {
         mutableStateOf(false)
@@ -77,17 +82,17 @@ private fun AppBar(
             )
         },
         navigationIcon = {
-            if (showBackButton) {
+            AnimatedVisibility(
+                visible = showBackButton,
+                enter = slideInHorizontally() + expandHorizontally() + fadeIn(),
+                exit = slideOutHorizontally() + shrinkHorizontally() + fadeOut()
+            ) {
                 IconButton(onClick = backClicked) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Back"
                     )
                 }
-            } else {
-                Spacer(
-                    modifier = Modifier.size(48.dp)
-                )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
