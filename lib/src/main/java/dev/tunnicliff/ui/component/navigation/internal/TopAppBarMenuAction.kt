@@ -50,7 +50,7 @@ internal fun TopAppBarMenuAction(
             },
             onClick = {
                 expanded = false
-                menuActionOptions.navHostController.navigateToAboutView(menuActionOptions.aboutOption)
+                menuActionOptions.navHostController.navigateToAboutView()
             }
         )
 
@@ -60,7 +60,7 @@ internal fun TopAppBarMenuAction(
             },
             onClick = {
                 expanded = false
-                menuActionOptions.logsOption.navigateToLogs()
+                menuActionOptions.navigateToLogs()
             }
         )
 

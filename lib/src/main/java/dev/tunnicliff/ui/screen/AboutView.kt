@@ -30,56 +30,53 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import dev.tunnicliff.ui.R
-import dev.tunnicliff.ui.component.navigation.MenuActionOptions
 import dev.tunnicliff.ui.component.navigation.composable
-import dev.tunnicliff.ui.component.navigation.mock
 import dev.tunnicliff.ui.component.text.TextStyle
 import dev.tunnicliff.ui.component.text.ThemedText
+import dev.tunnicliff.ui.helper.Constants
 import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 // region Navigation
 
-private const val ARGUMENT_ABOUT_OPTION = "aboutOption"
 private const val ROUTE = "AboutView"
 
-fun NavGraphBuilder.aboutView(context: Context) =
+fun NavGraphBuilder.aboutView(
+    context: Context,
+    appName: String,
+    repoLink: Uri,
+    appSpecificContent: @Composable () -> Unit
+) =
     composable(
-        route = "$ROUTE/{$ARGUMENT_ABOUT_OPTION}",
-        label = context.getString(R.string.top_app_var_info_action_option_about),
-        arguments = listOf(
-            navArgument(name = ARGUMENT_ABOUT_OPTION) { type = NavType.StringType }
-        )
+        route = ROUTE,
+        label = context.getString(R.string.top_app_var_info_action_option_about)
     ) {
-        val arguments = requireNotNull(it.arguments)
-
         AboutView(
-            aboutOption = arguments.getString(ARGUMENT_ABOUT_OPTION)?.let { argument ->
-                Json.decodeFromString(argument)
-            } ?: error("Missing argument $ARGUMENT_ABOUT_OPTION")
+            appName = appName,
+            repoLink = repoLink,
+            appSpecificContent = appSpecificContent
         )
     }
 
-internal fun NavController.navigateToAboutView(aboutOption: MenuActionOptions.AboutOption) =
-    navigate("$ROUTE/${Uri.encode(Json.encodeToString(aboutOption))}")
+internal fun NavController.navigateToAboutView() =
+    navigate(ROUTE)
 
 // endregion
 
 @Composable
-private fun AboutView(aboutOption: MenuActionOptions.AboutOption) {
+private fun AboutView(
+    appName: String,
+    repoLink: Uri,
+    appSpecificContent: @Composable () -> Unit
+) {
     val description = stringResource(R.string.about_app_description)
     val linkColor = MaterialTheme.colorScheme.primary
-    val repoLink = remember { aboutOption.repoLink.toString() }
     val annotatedLinkString = remember {
         getAnnotatedLinkString(
             description = description,
             linkColor = linkColor,
-            repoLink = repoLink
+            repoLink = repoLink.toString()
         )
     }
 
@@ -91,7 +88,7 @@ private fun AboutView(aboutOption: MenuActionOptions.AboutOption) {
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         ThemedText(
-            text = aboutOption.appName,
+            text = appName,
             style = TextStyle.TITLE_LARGE,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
@@ -107,11 +104,7 @@ private fun AboutView(aboutOption: MenuActionOptions.AboutOption) {
 
         HorizontalDivider()
 
-        ThemedText(
-            text = aboutOption.aboutContent,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
-        )
+        appSpecificContent()
     }
 }
 
@@ -151,6 +144,11 @@ private fun PreviewDarkTheme() = PreviewContent(PreviewerTheme.DARK)
 @Composable
 private fun PreviewContent(theme: PreviewerTheme) {
     ThemedPreviewer(theme = theme, enablePreviewScrolling = false) {
-        AboutView(MenuActionOptions.AboutOption.mock())
+        AboutView(
+            appName = "Demo App",
+            repoLink = Uri.parse("https://github.com/Brent-Tunnicliff/lib-ui-android")
+        ) {
+            ThemedText(Constants.TEXT_LONGER_THAN_SCREEN)
+        }
     }
 }

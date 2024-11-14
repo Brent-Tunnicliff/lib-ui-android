@@ -16,6 +16,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "REPO_LINK", "\"https://github.com/Brent-Tunnicliff/lib-ui-android\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true

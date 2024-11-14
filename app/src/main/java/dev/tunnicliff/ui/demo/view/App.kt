@@ -10,14 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.tunnicliff.ui.component.navigation.DefaultNavHost
 import dev.tunnicliff.ui.component.navigation.MenuActionOptions
 import dev.tunnicliff.ui.component.navigation.SimpleTopAppBar
+import dev.tunnicliff.ui.demo.BuildConfig
 import dev.tunnicliff.ui.demo.R
+import dev.tunnicliff.ui.demo.view.helper.AboutContentView
 import dev.tunnicliff.ui.demo.view.helper.logsView
 import dev.tunnicliff.ui.demo.view.helper.menuOptionView
 import dev.tunnicliff.ui.demo.view.helper.navigateToLogsView
@@ -39,13 +40,8 @@ fun App() {
                 navController = navController,
                 title = currentBackStackEntry?.destination?.label?.toString() ?: "",
                 menuActionOptions = MenuActionOptions(
-                    aboutOption = MenuActionOptions.AboutOption(
-                        aboutContent = "Hello, my name is John",
-                        appName = stringResource(R.string.app_name),
-                        repoLink = Uri.parse("https://github.com/Brent-Tunnicliff/lib-ui-android")
-                    ),
-                    logsOption = MenuActionOptions.LogsOption { navController.navigateToLogsView() },
                     navHostController = navController,
+                    navigateToLogs = { navController.navigateToLogsView() },
                     additionalOptions = listOf(
                         MenuActionOptions.Option("Option 1") {
                             navController.navigateToMenuOptionView(
@@ -76,7 +72,13 @@ fun App() {
                     navController = navController,
                     startDestination = START_DESTINATION
                 ) {
-                    aboutView(context)
+                    aboutView(
+                        context = context,
+                        appName = context.getString(R.string.app_name),
+                        repoLink = Uri.parse(BuildConfig.REPO_LINK)
+                    ) {
+                        AboutContentView()
+                    }
 
                     cardDemoView(context)
 
