@@ -3,6 +3,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.serialization)
     id("maven-publish")
 }
 
@@ -71,6 +72,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.paging.compose.android)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.material)
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)

@@ -2,10 +2,15 @@
 
 package dev.tunnicliff.ui.component.navigation
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -31,6 +36,7 @@ import androidx.navigation.NavHostController
 import dev.tunnicliff.ui.component.card.BaseCard
 import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.component.list.SimpleList
+import dev.tunnicliff.ui.component.navigation.internal.TopAppBarMenuAction
 import dev.tunnicliff.ui.helper.Constants
 import dev.tunnicliff.ui.theme.PreviewerTheme
 import dev.tunnicliff.ui.theme.ThemedPreviewer
@@ -38,7 +44,8 @@ import dev.tunnicliff.ui.theme.ThemedPreviewer
 @Composable
 fun SimpleTopAppBar(
     navController: NavHostController,
-    title: String
+    title: String = "",
+    menuActionOptions: MenuActionOptions
 ) {
     var showBackButton by remember {
         mutableStateOf(false)
@@ -57,7 +64,8 @@ fun SimpleTopAppBar(
     AppBar(
         title = title,
         backClicked = { navController.navigateUp() },
-        showBackButton = showBackButton
+        showBackButton = showBackButton,
+        menuActionOptions = menuActionOptions
     )
 }
 
@@ -66,29 +74,39 @@ fun SimpleTopAppBar(
 private fun AppBar(
     title: String,
     backClicked: () -> Unit,
-    showBackButton: Boolean
+    showBackButton: Boolean,
+    menuActionOptions: MenuActionOptions
 ) {
     TopAppBar(
         title = {
-            Text(
-                text = title,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+            AnimatedVisibility(
+                visible = title.isNotEmpty(),
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                Text(
+                    text = title,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         },
         navigationIcon = {
-            if (showBackButton) {
+            AnimatedVisibility(
+                visible = showBackButton,
+                enter = slideInHorizontally() + expandHorizontally() + fadeIn(),
+                exit = slideOutHorizontally() + shrinkHorizontally() + fadeOut()
+            ) {
                 IconButton(onClick = backClicked) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Back"
                     )
                 }
-            } else {
-                Spacer(
-                    modifier = Modifier.size(48.dp)
-                )
             }
+        },
+        actions = {
+            TopAppBarMenuAction(menuActionOptions = menuActionOptions)
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
@@ -115,7 +133,8 @@ private fun PreviewContent(theme: PreviewerTheme) {
                 AppBar(
                     title = Constants.VERY_LONG_TEXT,
                     backClicked = {},
-                    showBackButton = true
+                    showBackButton = true,
+                    menuActionOptions = MenuActionOptions.mock()
                 )
             }
         ) {

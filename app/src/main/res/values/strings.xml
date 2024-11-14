@@ -2,7 +2,7 @@
 
 <resources>
     <string name="app_name">Demo</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="card_demo_view_label">Card Demo</string>
     <string name="component_list_option_buttons">Buttons</string>
     <string name="component_list_option_cards">Cards</string>
     <string name="component_list_option_list">List</string>
