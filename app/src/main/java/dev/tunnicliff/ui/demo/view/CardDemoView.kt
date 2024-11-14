@@ -2,6 +2,7 @@
 
 package dev.tunnicliff.ui.demo.view
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -14,9 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
 import dev.tunnicliff.ui.component.card.CardVariant
 import dev.tunnicliff.ui.component.card.SimpleTextCard
+import dev.tunnicliff.ui.component.navigation.composable
+import dev.tunnicliff.ui.demo.R
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsInput
 import dev.tunnicliff.ui.demo.view.helper.DemoOptionsView
 import dev.tunnicliff.ui.theme.PreviewerTheme
@@ -26,8 +28,11 @@ import dev.tunnicliff.ui.theme.ThemedPreviewer
 
 private const val ROUTE = "CardDemoView"
 
-fun NavGraphBuilder.cardDemoView() {
-    composable(ROUTE) {
+fun NavGraphBuilder.cardDemoView(context: Context) {
+    composable(
+        route = ROUTE,
+        label = context.getString(R.string.card_demo_view_label)
+    ) {
         CardDemoView()
     }
 }
