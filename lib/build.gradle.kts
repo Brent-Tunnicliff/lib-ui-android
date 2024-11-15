@@ -47,15 +47,43 @@ android {
     }
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "dev.tunnicliff"
-            artifactId = "ui"
-            version = "0.1.0"
-
-            afterEvaluate {
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
                 from(components["release"])
+                groupId = "dev.tunnicliff"
+                artifactId = "lib-ui-android"
+                version = "0.1.0-alpha.8"
+
+                pom {
+                    packaging = "aar"
+                    name.set("lib-ui-android")
+                    description.set("lib-ui-android: Common UI components for my apps.")
+                    url.set("https://github.com/Brent-Tunnicliff/lib-ui-android")
+                    inceptionYear.set("2024")
+
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://opensource.org/licenses/MIT")
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id.set("brent")
+                            name.set("Brent Tunnicliff")
+                            email.set("brent@tunnicliff.dev")
+                        }
+                    }
+
+                    scm {
+                        connection.set("scm:git:https://github.com/Brent-Tunnicliff/lib-ui-android.git")
+                        developerConnection.set("scm:git:ssh://git@github.com:Brent-Tunnicliff/lib-ui-android.git")
+                        url.set("https://github.com/Brent-Tunnicliff/lib-ui-android")
+                    }
+                }
             }
         }
     }
