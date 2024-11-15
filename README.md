@@ -1,5 +1,7 @@
 # lib-ui-android
 
+![Maven Central Version](https://img.shields.io/maven-central/v/dev.tunnicliff/lib-ui-android)
+
 Common UI components for my apps.
 
 Project contains the library `lib/` and a demo app `app/`.
